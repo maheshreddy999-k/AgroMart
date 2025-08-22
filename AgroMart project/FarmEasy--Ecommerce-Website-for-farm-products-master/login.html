@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | AgroMart</title>
+    <style>
+        /* CSS Styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .login-container {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 300px;
+        }
+
+        h2 {
+            margin-bottom: 10px;
+        }
+
+        .role-selection {
+            margin-bottom: 15px;
+        }
+
+        .role-selection button {
+            padding: 10px 15px;
+            margin: 5px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        #buyer-btn {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        #seller-btn {
+            background-color: #FFA500;
+            color: white;
+        }
+
+        #selected-role {
+            font-weight: bold;
+            margin: 10px 0;
+            color: #333;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            margin: 8px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        button[type="submit"] {
+            background-color: #008CBA;
+            color: white;
+            padding: 10px;
+            border: none;
+            width: 100%;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #005f73;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="login-container">
+        <h2>Login to AgroMart</h2>
+        <p>Select your role:</p>
+
+        <div class="role-selection">
+            <button id="buyer-btn">Buyer</button>
+            <button id="seller-btn">Seller</button>
+        </div>
+
+        <p id="selected-role">Selected Role: None</p>
+
+        <form id="login-form">
+            <input type="email" id="email" placeholder="Enter your email" required>
+            <input type="password" id="password" placeholder="Enter your password" required>
+            <button type="submit">Login</button>
+        </form>
+
+        <p>Don't have an account? <a href="sign.html">Sign up</a></p>
+    </div>
+
+    <script>
+        // JavaScript logic
+        document.addEventListener("DOMContentLoaded", function () {
+            let selectedRole = ""; // Store selected role
+
+            // Handle role selection
+            document.getElementById("buyer-btn").addEventListener("click", function () {
+                selectedRole = "buyer";
+                document.getElementById("selected-role").textContent = "Selected Role: Buyer";
+            });
+
+            document.getElementById("seller-btn").addEventListener("click", function () {
+                selectedRole = "seller";
+                document.getElementById("selected-role").textContent = "Selected Role: Seller";
+            });
+
+            // Handle login form submission
+            document.getElementById("login-form").addEventListener("submit", function (event) {
+                event.preventDefault();
+
+                const email = document.getElementById("email").value;
+                const password = document.getElementById("password").value;
+
+                if (!selectedRole) {
+                    alert("Please select a role before logging in.");
+                    return;
+                }
+
+                // Dummy validation (replace with backend authentication)
+                if (email && password) {
+                    alert(`Logged in successfully as ${selectedRole}`);
+                    
+                    // Redirect to index.html after login
+                    window.location.replace("index.html");
+
+                } else {
+                    alert("Invalid email or password.");
+                }
+            });
+        });
+    </script> 
+</body>
+</html>

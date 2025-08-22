@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up | AgroMart</title>
+    <style>
+        /* CSS Styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .signup-container {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 300px;
+        }
+
+        h2 {
+            margin-bottom: 10px;
+        }
+
+        .role-selection {
+            margin-bottom: 15px;
+        }
+
+        .role-selection button {
+            padding: 10px 15px;
+            margin: 5px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        #buyer-btn {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        #seller-btn {
+            background-color: #FFA500;
+            color: white;
+        }
+
+        #selected-role {
+            font-weight: bold;
+            margin: 10px 0;
+            color: #333;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            margin: 8px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        button[type="submit"] {
+            background-color: #008CBA;
+            color: white;
+            padding: 10px;
+            border: none;
+            width: 100%;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #005f73;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="signup-container">
+        <h2>Create an Account</h2>
+        <p>Select your role:</p>
+
+        <div class="role-selection">
+            <button id="buyer-btn">Buyer</button>
+            <button id="seller-btn">Seller</button>
+        </div>
+
+        <p id="selected-role">Selected Role: None</p>
+
+        <form id="signup-form">
+            <input type="text" id="full-name" placeholder="Full Name" required>
+            <input type="email" id="email" placeholder="Email Address" required>
+            <input type="password" id="password" placeholder="Password" required>
+            <input type="password" id="confirm-password" placeholder="Confirm Password" required>
+            <button type="submit">Sign Up</button>
+        </form>
+
+        <p>Already have an account? <a href="login.html">Login</a></p>
+    </div>
+
+    <script>
+        // JavaScript logic
+        document.addEventListener("DOMContentLoaded", function () {
+            let selectedRole = ""; // Store selected role
+
+            // Handle role selection
+            document.getElementById("buyer-btn").addEventListener("click", function () {
+                selectedRole = "buyer";
+                document.getElementById("selected-role").textContent = "Selected Role: Buyer";
+            });
+
+            document.getElementById("seller-btn").addEventListener("click", function () {
+                selectedRole = "seller";
+                document.getElementById("selected-role").textContent = "Selected Role: Seller";
+            });
+
+            // Handle sign-up form submission
+            document.getElementById("signup-form").addEventListener("submit", function (event) {
+                event.preventDefault();
+
+                const fullName = document.getElementById("full-name").value;
+                const email = document.getElementById("email").value;
+                const password = document.getElementById("password").value;
+                const confirmPassword = document.getElementById("confirm-password").value;
+
+                if (!selectedRole) {
+                    alert("Please select a role before signing up.");
+                    return;
+                }
+
+                if (!fullName || !email || !password || !confirmPassword) {
+                    alert("All fields are required.");
+                    return;
+                }
+
+                if (password !== confirmPassword) {
+                    alert("Passwords do not match.");
+                    return;
+                }
+
+                alert(`Account created successfully as ${selectedRole}`);
+                window.location.href = "login.html"; // Redirect to login page
+            });
+        });
+    </script>
+</body>
+</html>
